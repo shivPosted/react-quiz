@@ -1,5 +1,6 @@
+import FormReduce from "./FormReduce";
 function App() {
-  return <div>Hello React</div>;
+  return <FormReduce />;
 }
 
 export default App;
