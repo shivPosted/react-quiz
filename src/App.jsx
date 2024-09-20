@@ -1,6 +1,7 @@
+import DateCounter from "./DateCounter";
 import FormReduce from "./FormReduce";
 function App() {
-  return <FormReduce />;
+  return <DateCounter />;
 }
 
 export default App;
