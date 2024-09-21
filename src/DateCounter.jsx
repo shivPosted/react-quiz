@@ -15,33 +15,44 @@ const dateFormatter = function (count) {
   }).format(date);
 };
 
+const initialState = {
+  count: 0,
+  step: 1,
+};
+
 function reducer(state, action) {
   switch (action.type) {
     case "INC":
-      return state + action.payload;
+      return { ...state, count: state.count + state.step };
     case "DEC":
-      return state - action.payload;
+      return { ...state, count: state.count - state.step };
     case "RESET":
-      return 0;
-    case "CHANGE":
-      return action.payload;
+      return initialState;
+    case "SET_COUNT":
+      return { ...state, count: action.payload };
+    case "SET_STEP":
+      return { ...state, step: action.payload };
   }
 }
 export default function DateCounter() {
-  const [step, setStep] = useState(1);
-  const [count, dispatch] = useReducer(reducer, 0);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state);
+  const { count, step } = state;
 
   function handleReset() {
-    setStep(1);
     dispatch({ type: "RESET" });
   }
 
   function handleOP(action) {
-    dispatch({ type: action, payload: step });
+    dispatch({ type: action });
   }
 
   function handleChange(e) {
-    dispatch({ type: "CHANGE", payload: Number(e.target.value) });
+    dispatch({ type: "SET_COUNT", payload: Number(e.target.value) });
+  }
+
+  function handleStep(e) {
+    dispatch({ type: "SET_STEP", payload: Number(e.target.value) });
   }
   return (
     <div className={styles.container}>
@@ -51,7 +62,7 @@ export default function DateCounter() {
           max="10"
           type="range"
           value={step}
-          onChange={(e) => setStep(+e.target.value)}
+          onChange={handleStep}
         />
         <span>{step}</span>
       </div>
