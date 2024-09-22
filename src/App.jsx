@@ -10,8 +10,9 @@ import BtnNext from "./components/BtnNext";
 
 const initialState = {
   questions: [],
-  currQuestion: 1,
-  status: "loading", //NOTE: loading | ready | start | error
+  index: 0,
+  status: "loading", //NOTE: loading | ready | start | error | finished
+  answer: null,
 };
 
 function reducer(state, action) {
@@ -35,14 +36,17 @@ function reducer(state, action) {
     case "nextQuestion":
       return {
         ...state,
-        currQuestion: state.currQuestion + 1,
+        index: state.index + 1,
+        answer: null,
       };
+    case "setAnswer":
+      return { ...state, answer: action.payload };
     default:
       throw new Error("There was an error 💥");
   }
 }
 function App() {
-  const [{ currQuestion, questions, status }, dispatch] = useReducer(
+  const [{ index, questions, status, answer }, dispatch] = useReducer(
     reducer,
     initialState,
   );
@@ -83,8 +87,9 @@ function App() {
         )}
         {status === "start" && (
           <QuestionBox
-            questionObj={questions[currQuestion]}
+            questionObj={questions[index]}
             dispatch={dispatch}
+            answer={answer}
           >
             <BtnNext dispatch={dispatch} />
           </QuestionBox>

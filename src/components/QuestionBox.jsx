@@ -1,11 +1,22 @@
+import { useState } from "react";
 import OptionList from "./OptionList";
 
-export default function QuestionBox({ questionObj, children }) {
+export default function QuestionBox({
+  questionObj,
+  children,
+  answer,
+  dispatch,
+}) {
   console.log(questionObj);
   return (
     <div>
-      <h3>{questionObj?.question}</h3>
-      <OptionList options={questionObj?.options} />
+      <h4>{questionObj?.question}</h4>
+      <OptionList
+        correctOpt={questionObj.correctOption}
+        options={questionObj?.options}
+        dispatch={dispatch}
+        answer={answer}
+      />
       {children}
     </div>
   );
