@@ -2,10 +2,10 @@ import Option from "./Option";
 
 export default function OptionList({ options }) {
   return (
-    <ul>
+    <div className="options">
       {options?.map((option) => (
         <Option key={option}>{option} </Option>
       ))}
-    </ul>
+    </div>
   );
 }

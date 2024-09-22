@@ -1,12 +1,12 @@
 import OptionList from "./OptionList";
 
-export default function QuestionBox({ questionObj, dispatch }) {
+export default function QuestionBox({ questionObj, children }) {
   console.log(questionObj);
   return (
     <div>
-      <p>{questionObj?.question}</p>
+      <h3>{questionObj?.question}</h3>
       <OptionList options={questionObj?.options} />
-      <button onClick={() => dispatch({ type: "nextQuestion" })}>Next</button>
+      {children}
     </div>
   );
 }

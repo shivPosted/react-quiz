@@ -6,6 +6,7 @@ import { useEffect, useReducer, useState } from "react";
 import Error from "./components/Error";
 import Loader from "./components/Loader";
 import StartScreen from "./components/StartScreen";
+import BtnNext from "./components/BtnNext";
 
 const initialState = {
   questions: [],
@@ -84,7 +85,9 @@ function App() {
           <QuestionBox
             questionObj={questions[currQuestion]}
             dispatch={dispatch}
-          />
+          >
+            <BtnNext dispatch={dispatch} />
+          </QuestionBox>
         )}
       </MainComp>
     </div>
