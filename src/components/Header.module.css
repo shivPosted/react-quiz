@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  place-items: center;
+  max-width: 50%;
+  gap: 2.4rem;
+  margin: 3.2rem auto;
+  font-family: "Codystar", sans-serif;
+}
+.container img {
+  width: 8rem;
+}
+
+h1 {
+  font-size: 4rem;
+  color: var(--color-medium);
+}
