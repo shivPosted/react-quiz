@@ -11,6 +11,7 @@ import Timer from "./components/Timer";
 import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
 import Footer from "./components/Footer";
+import Filter from "./components/Filter";
 
 const SEC_PER_QUESTION = 30;
 
@@ -22,7 +23,21 @@ const initialState = {
   points: 0,
   highscore: 0,
   secondsRemaining: null,
+  fetchedQuestions: null,
 };
+
+function difficultyFilterQues(questions, difficulty) {
+  console.log(questions, difficulty);
+  if (difficulty === "easy") {
+    return questions.filter((obj) => obj.points === 10);
+  }
+  if (difficulty === "medium") {
+    return questions.filter((obj) => obj.points === 20);
+  }
+  if (difficulty === "hard") {
+    return questions.filter((obj) => obj.points === 30);
+  } else return questions;
+}
 
 function reducer(state, action) {
   switch (action.type) {
@@ -31,6 +46,7 @@ function reducer(state, action) {
         ...state,
         status: "ready",
         questions: action.payload,
+        fetchedQuestions: action.payload,
       };
     case "error":
       return {
@@ -68,7 +84,7 @@ function reducer(state, action) {
     case "restart":
       return {
         ...initialState,
-        questions: state.questions,
+        questions: state.fetchedQuestions,
         status: "ready",
         highscore: state.highscore, //NOTE: preserving highscore on restart
       };
@@ -78,6 +94,15 @@ function reducer(state, action) {
         status: state.secondsRemaining === 0 ? "finish" : state.status,
         secondsRemaining: state.secondsRemaining - 1,
       };
+    case "filter":
+      return {
+        ...state,
+        questions: difficultyFilterQues(state.fetchedQuestions, action.payload),
+        status: "ready",
+        // secondsRemaining:
+        //   difficultyFilterQues(state.fetchedQuestions, action.payload).length *
+        //   SEC_PER_QUESTION,
+      };
     default:
       throw new Error("There was an error 💥");
   }
@@ -85,7 +110,16 @@ function reducer(state, action) {
 
 function App() {
   const [
-    { index, questions, status, answer, points, highscore, secondsRemaining },
+    {
+      index,
+      questions,
+      status,
+      answer,
+      points,
+      highscore,
+      secondsRemaining,
+      fetchedQuestions,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
@@ -116,7 +150,10 @@ function App() {
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
         {status === "ready" && (
-          <StartScreen questionNum={questionNum} dispatch={dispatch} />
+          <>
+            <Filter dispatch={dispatch} />
+            <StartScreen questionNum={questionNum} dispatch={dispatch} />
+          </>
         )}
         {status === "start" && (
           <>

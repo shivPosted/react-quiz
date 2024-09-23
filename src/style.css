@@ -37,6 +37,8 @@ body {
 
 .main {
   width: 50rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-header {
@@ -114,7 +116,8 @@ progress {
   border-radius: 100px;
 }
 
-.btn {
+.btn,
+select {
   display: block;
   font-family: inherit;
   color: inherit;
@@ -125,6 +128,13 @@ progress {
   cursor: pointer;
   border-radius: 100px;
   transition: 0.3s;
+}
+
+select {
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  margin-bottom: 3.2rem;
+  align-self: center;
 }
 
 .btn:not([disabled]):hover {
@@ -268,3 +278,9 @@ progress {
   font-size: inherit;
   padding: 0.8rem;
 }
+
+/* select { */
+/*   color: var(--color-light); */
+/*   background-color: var(--color-dark); */
+/*   border-radius: 10rem; */
+/* } */

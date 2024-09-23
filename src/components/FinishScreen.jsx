@@ -8,9 +8,9 @@ export default function FinishScreen({
 
   let emoji = "🥇";
   if (percentage === 0) emoji = "👎";
-  else if (percentage > 0 || percentage <= 50) emoji = "😞";
-  else if (percentage > 50 || percentage <= 80) emoji = "🤗";
-  else if (percentage > 80 || percentage < 100) emoji = "🥳";
+  else if (percentage > 0 && percentage <= 50) emoji = "😞";
+  else if (percentage > 50 && percentage <= 80) emoji = "🤗";
+  else if (percentage > 80 && percentage < 100) emoji = "🥳";
 
   return (
     <>
