@@ -1,20 +1,18 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-export default function Timer() {
-  const [timeString, setTimeString] = useState("");
-  const time = useRef(10 * 60);
+export default function Timer({ secondsRemaining, dispatch }) {
+  const min = Math.trunc(secondsRemaining / 60);
+  const sec = Math.trunc(secondsRemaining % 60);
+
+  const timeString = `${String(min).padStart(2, 0)}:${String(sec).padStart(2, 0)}`;
+
   useEffect(() => {
-    setInterval(() => {
-      const min = String(time.current / 60).padStart(2, 0);
-      const sec = String(time.current % 60).padStart(2, 0);
-      const string = `${min}:${sec}`;
-      time.current = time.current - 1;
-      setTimeString(string);
+    const interval = setInterval(() => {
+      dispatch({ type: "timer" });
     }, 1000);
-  }, []);
-  return (
-    <button className="btn btn-ui" disabled>
-      {timeString}
-    </button>
-  );
+    return () => {
+      clearInterval(interval);
+    };
+  }, [dispatch]);
+  return <div className="timer">{timeString}</div>;
 }

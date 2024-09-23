@@ -10,6 +10,9 @@ import BtnNext from "./components/BtnNext";
 import Timer from "./components/Timer";
 import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
+import Footer from "./components/Footer";
+
+const SEC_PER_QUESTION = 30;
 
 const initialState = {
   questions: [],
@@ -18,6 +21,7 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
+  secondsRemaining: null,
 };
 
 function reducer(state, action) {
@@ -37,6 +41,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "start",
+        secondsRemaining: state.questions.length * SEC_PER_QUESTION,
       };
     case "nextQuestion":
       return {
@@ -67,14 +72,22 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore, //NOTE: preserving highscore on restart
       };
+    case "timer":
+      return {
+        ...state,
+        status: state.secondsRemaining === 0 ? "finish" : state.status,
+        secondsRemaining: state.secondsRemaining - 1,
+      };
     default:
       throw new Error("There was an error 💥");
   }
 }
 
 function App() {
-  const [{ index, questions, status, answer, points, highscore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { index, questions, status, answer, points, highscore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   const questionNum = questions.length;
   const totalPoints = questions.reduce((accum, obj) => accum + obj.points, 0);
@@ -119,12 +132,15 @@ function App() {
               dispatch={dispatch}
               answer={answer}
             ></QuestionBox>
-            <BtnNext
-              dispatch={dispatch}
-              answer={answer}
-              index={index}
-              questionNum={questionNum}
-            />
+            <Footer>
+              <BtnNext
+                dispatch={dispatch}
+                answer={answer}
+                index={index}
+                questionNum={questionNum}
+              />
+              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
+            </Footer>
           </>
         )}
         {status === "finish" && (
