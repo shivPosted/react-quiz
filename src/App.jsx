@@ -54,6 +54,8 @@ function reducer(state, action) {
       };
     case "finish":
       return { ...state, status: "finish" };
+    case "restart":
+      return { ...initialState, questions: state.questions, status: "start" };
     default:
       throw new Error("There was an error 💥");
   }
@@ -121,7 +123,13 @@ function App() {
             />
           </>
         )}
-        {status === "finish" && <FinishScreen />}
+        {status === "finish" && (
+          <FinishScreen
+            points={points}
+            totalPoints={totalPoints}
+            dispatch={dispatch}
+          />
+        )}
       </MainComp>
     </div>
   );

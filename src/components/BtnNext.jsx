@@ -8,7 +8,7 @@ export default function BtnNext({ dispatch, answer, questionNum, index }) {
         dispatch({ type: "nextQuestion" });
       }}
     >
-      Next
+      {questionNum - 1 === index ? "Finish" : "Next"}
     </button>
   );
 }
