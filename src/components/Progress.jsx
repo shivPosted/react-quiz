@@ -1,10 +1,19 @@
-export default function Progress({ index, questionNum, answer }) {
+export default function Progress({
+  index,
+  questionNum,
+  answer,
+  totalPoints,
+  points,
+}) {
   return (
     <div className="progress">
       <progress max={questionNum} value={index + Number(answer !== null)} />
-      <div>
+      <p>
         Question <strong>{index + 1}</strong> / {questionNum}
-      </div>
+      </p>
+      <p>
+        <strong>{points}</strong> / {totalPoints}
+      </p>
     </div>
   );
 }
