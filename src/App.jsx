@@ -9,6 +9,7 @@ import StartScreen from "./components/StartScreen";
 import BtnNext from "./components/BtnNext";
 import Timer from "./components/Timer";
 import Progress from "./components/Progress";
+import FinishScreen from "./components/FinishScreen";
 
 const initialState = {
   questions: [],
@@ -41,13 +42,18 @@ function reducer(state, action) {
         ...state,
         index: state.index + 1,
         answer: null,
+      };
+    case "setAnswer":
+      return {
+        ...state,
+        answer: action.payload,
         points:
-          state.questions.at(state.index).correctOption === state.answer
+          state.questions.at(state.index).correctOption === action.payload
             ? state.points + state.questions.at(state.index).points
             : state.points,
       };
-    case "setAnswer":
-      return { ...state, answer: action.payload };
+    case "finish":
+      return { ...state, status: "finish" };
     default:
       throw new Error("There was an error 💥");
   }
@@ -107,9 +113,15 @@ function App() {
               dispatch={dispatch}
               answer={answer}
             ></QuestionBox>
-            <BtnNext dispatch={dispatch} answer={answer} />
+            <BtnNext
+              dispatch={dispatch}
+              answer={answer}
+              index={index}
+              questionNum={questionNum}
+            />
           </>
         )}
+        {status === "finish" && <FinishScreen />}
       </MainComp>
     </div>
   );
