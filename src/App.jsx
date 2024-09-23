@@ -8,6 +8,7 @@ import Loader from "./components/Loader";
 import StartScreen from "./components/StartScreen";
 import BtnNext from "./components/BtnNext";
 import Timer from "./components/Timer";
+import Progress from "./components/Progress";
 
 const initialState = {
   questions: [],
@@ -93,6 +94,7 @@ function App() {
         )}
         {status === "start" && (
           <>
+            <Progress index={index} questionNum={questionNum} answer={answer} />
             <QuestionBox
               questionObj={questions[index]}
               dispatch={dispatch}
