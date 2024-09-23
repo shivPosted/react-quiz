@@ -1,4 +1,3 @@
-import { useState } from "react";
 import OptionList from "./OptionList";
 
 export default function QuestionBox({

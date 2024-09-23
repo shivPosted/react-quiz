@@ -7,8 +7,9 @@ export default function Option({
 }) {
   return (
     <button
-      className={`btn btn-option ${answer || answer === 0 ? (optionNum === correctOpt ? "correct" : "wrong") : ""} ${optionNum === answer ? "answer" : ""}`}
+      className={`btn btn-option ${answer !== null ? (optionNum === correctOpt ? "correct" : "wrong") : ""} ${optionNum === answer ? "answer" : ""}`}
       onClick={() => dispatch({ type: "setAnswer", payload: optionNum })}
+      disabled={answer !== null}
     >
       {children}
     </button>

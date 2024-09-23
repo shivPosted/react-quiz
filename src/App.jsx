@@ -7,12 +7,14 @@ import Error from "./components/Error";
 import Loader from "./components/Loader";
 import StartScreen from "./components/StartScreen";
 import BtnNext from "./components/BtnNext";
+import Timer from "./components/Timer";
 
 const initialState = {
   questions: [],
   index: 0,
   status: "loading", //NOTE: loading | ready | start | error | finished
   answer: null,
+  points: 0,
 };
 
 function reducer(state, action) {
@@ -38,6 +40,10 @@ function reducer(state, action) {
         ...state,
         index: state.index + 1,
         answer: null,
+        points:
+          state.questions.at(state.index).correctOption === state.answer
+            ? state.points + state.questions.at(state.index).points
+            : state.points,
       };
     case "setAnswer":
       return { ...state, answer: action.payload };
@@ -86,13 +92,14 @@ function App() {
           <StartScreen questionNum={questionNum} dispatch={dispatch} />
         )}
         {status === "start" && (
-          <QuestionBox
-            questionObj={questions[index]}
-            dispatch={dispatch}
-            answer={answer}
-          >
-            <BtnNext dispatch={dispatch} />
-          </QuestionBox>
+          <>
+            <QuestionBox
+              questionObj={questions[index]}
+              dispatch={dispatch}
+              answer={answer}
+            ></QuestionBox>
+            <BtnNext dispatch={dispatch} answer={answer} />
+          </>
         )}
       </MainComp>
     </div>
