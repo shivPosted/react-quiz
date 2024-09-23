@@ -64,13 +64,14 @@ function reducer(state, action) {
       return {
         ...initialState,
         questions: state.questions,
-        status: "start",
-        highscore: state.highscore,
+        status: "ready",
+        highscore: state.highscore, //NOTE: preserving highscore on restart
       };
     default:
       throw new Error("There was an error 💥");
   }
 }
+
 function App() {
   const [{ index, questions, status, answer, points, highscore }, dispatch] =
     useReducer(reducer, initialState);
@@ -95,12 +96,6 @@ function App() {
     fetchQuestions();
   }, []);
 
-  // function handleNext() {
-  //   setQuestionNum((cur) => cur + 1);
-  // }
-  // function handlePrev() {
-  //   setQuestionNum((cur) => cur === questions.length - 1 ?  cur - 1);
-  // }
   return (
     <div className="app">
       <Header />
