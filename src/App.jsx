@@ -17,6 +17,7 @@ const initialState = {
   status: "loading", //NOTE: loading | ready | start | error | finished
   answer: null,
   points: 0,
+  highscore: 0,
 };
 
 function reducer(state, action) {
@@ -53,18 +54,26 @@ function reducer(state, action) {
             : state.points,
       };
     case "finish":
-      return { ...state, status: "finish" };
+      return {
+        ...state,
+        status: "finish",
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
+      };
     case "restart":
-      return { ...initialState, questions: state.questions, status: "start" };
+      return {
+        ...initialState,
+        questions: state.questions,
+        status: "start",
+        highscore: state.highscore,
+      };
     default:
       throw new Error("There was an error 💥");
   }
 }
 function App() {
-  const [{ index, questions, status, answer, points }, dispatch] = useReducer(
-    reducer,
-    initialState,
-  );
+  const [{ index, questions, status, answer, points, highscore }, dispatch] =
+    useReducer(reducer, initialState);
 
   const questionNum = questions.length;
   const totalPoints = questions.reduce((accum, obj) => accum + obj.points, 0);
@@ -128,6 +137,7 @@ function App() {
             points={points}
             totalPoints={totalPoints}
             dispatch={dispatch}
+            highscore={highscore}
           />
         )}
       </MainComp>
