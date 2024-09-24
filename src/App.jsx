@@ -24,6 +24,8 @@ const initialState = {
   highscore: 0,
   secondsRemaining: null,
   fetchedQuestions: null,
+  reviewing: false,
+  answerArr: [],
 };
 
 function difficultyFilterQues(questions, difficulty) {
@@ -73,6 +75,7 @@ function reducer(state, action) {
           state.questions.at(state.index).correctOption === action.payload
             ? state.points + state.questions.at(state.index).points
             : state.points,
+        answerArr: [...state.answerArr, action.payload],
       };
     case "finish":
       return {
@@ -87,6 +90,7 @@ function reducer(state, action) {
         questions: state.fetchedQuestions,
         status: "ready",
         highscore: state.highscore, //NOTE: preserving highscore on restart
+        fetchedQuestions: state.fetchedQuestions,
       };
     case "timer":
       return {
@@ -103,6 +107,22 @@ function reducer(state, action) {
         //   difficultyFilterQues(state.fetchedQuestions, action.payload).length *
         //   SEC_PER_QUESTION,
       };
+    case "review":
+      return {
+        ...state,
+        status: "start",
+        reviewing: true,
+        index: 0,
+        answer: null,
+        secondsRemaining: null,
+      };
+
+    case "nextReview":
+      return {
+        ...state,
+        index: state.index + 1,
+        status: state.index === state.questions.length - 1 ? "finish" : "start",
+      };
     default:
       throw new Error("There was an error 💥");
   }
@@ -118,7 +138,8 @@ function App() {
       points,
       highscore,
       secondsRemaining,
-      fetchedQuestions,
+      reviewing,
+      answerArr,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -157,17 +178,24 @@ function App() {
         )}
         {status === "start" && (
           <>
-            <Progress
-              index={index}
-              questionNum={questionNum}
-              answer={answer}
-              points={points}
-              totalPoints={totalPoints}
-            />
+            {reviewing ? (
+              ""
+            ) : (
+              <Progress
+                index={index}
+                questionNum={questionNum}
+                answer={answer}
+                points={points}
+                totalPoints={totalPoints}
+              />
+            )}
             <QuestionBox
               questionObj={questions[index]}
+              quesIndex={index}
               dispatch={dispatch}
               answer={answer}
+              reviewing={reviewing}
+              answerArr={answerArr}
             ></QuestionBox>
             <Footer>
               <BtnNext
@@ -176,7 +204,14 @@ function App() {
                 index={index}
                 questionNum={questionNum}
               />
-              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
+              {secondsRemaining !== null ? (
+                <Timer
+                  secondsRemaining={secondsRemaining}
+                  dispatch={dispatch}
+                />
+              ) : (
+                ""
+              )}
             </Footer>
           </>
         )}

@@ -19,12 +19,20 @@ export default function FinishScreen({
         {percentage}%)
       </p>
       <p className="highscore">(Highscore: {highscore} points)</p>
-      <button
-        className="btn btn-ui"
-        onClick={() => dispatch({ type: "restart" })}
-      >
-        Restart Quiz
-      </button>
+      <div className="finish-btns">
+        <button
+          className="btn btn-ui"
+          onClick={() => dispatch({ type: "review" })}
+        >
+          Review
+        </button>
+        <button
+          className="btn btn-ui"
+          onClick={() => dispatch({ type: "restart" })}
+        >
+          Restart Quiz
+        </button>
+      </div>
     </>
   );
 }

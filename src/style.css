@@ -175,7 +175,15 @@ select {
   border: 2px solid var(--color-accent);
   color: var(--color-darkest);
 }
-
+.btn-option.wrong.answer {
+  border: 3px solid red;
+  color: red;
+  position: relative;
+}
+.btn-option.wrong.answer::after {
+  content: "❌";
+  position: absolute;
+}
 .answer {
   transform: translateX(2rem);
 }
@@ -284,3 +292,7 @@ select {
 /*   background-color: var(--color-dark); */
 /*   border-radius: 10rem; */
 /* } */
+.finish-btns {
+  display: flex;
+  justify-content: space-between;
+}
