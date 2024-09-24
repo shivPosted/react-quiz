@@ -194,7 +194,7 @@ function App() {
     async function fetchQuestions() {
       try {
         const res = await fetch(
-          "https://shivposted.github.io/react-quiz/data/db.json",
+          "https://shivposted.github.io/react-quiz/data/db.json", //WARN: using github.io to fake api call
         );
         if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
 
