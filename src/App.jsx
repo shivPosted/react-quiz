@@ -185,15 +185,22 @@ function App() {
   ] = useReducer(reducer, initialState);
 
   const questionNum = questions.length;
+  console.log(questionNum);
+  console.log(questions);
+
   const totalPoints = questions.reduce((accum, obj) => accum + obj.points, 0);
+
   useEffect(() => {
     async function fetchQuestions() {
       try {
-        const res = await fetch("http://localhost:9000/questions");
+        const res = await fetch(
+          "https://shivposted.github.io/react-quiz/data/db.json",
+        );
         if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
 
-        const data = await res.json();
+        const { questions: data } = await res.json();
 
+        console.log(data);
         dispatch({ type: "dataRecieved", payload: data });
       } catch (err) {
         console.log(err.message);
