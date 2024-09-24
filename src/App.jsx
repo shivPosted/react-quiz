@@ -12,6 +12,7 @@ import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
 import Footer from "./components/Footer";
 import Filter from "./components/Filter";
+import SelectQuiz from "./components/SelectQuiz";
 
 const SEC_PER_QUESTION = 30;
 
@@ -26,19 +27,42 @@ const initialState = {
   fetchedQuestions: null,
   reviewing: false,
   answerArr: [],
+  showFilter: false,
+  techSelected: null,
 };
 
-function difficultyFilterQues(questions, difficulty) {
+function difficultyFilterQues(questions, difficulty, techSelected) {
   console.log(questions, difficulty);
   if (difficulty === "easy") {
-    return questions.filter((obj) => obj.points === 10);
+    return questions.filter(
+      (obj) => obj.points === 10 && obj.tech === techSelected,
+    );
   }
   if (difficulty === "medium") {
-    return questions.filter((obj) => obj.points === 20);
+    return questions.filter(
+      (obj) => obj.points === 20 && obj.tech === techSelected,
+    );
   }
   if (difficulty === "hard") {
-    return questions.filter((obj) => obj.points === 30);
-  } else return questions;
+    return questions.filter(
+      (obj) => obj.points === 30 && obj.tech === techSelected,
+    );
+  } else return questions.filter((obj) => obj.tech === techSelected);
+}
+
+function filterQuestionTechStack(questions, tech) {
+  switch (tech) {
+    case "react":
+      return questions.filter((obj) => obj.tech === "react");
+    case "javascript":
+      return questions.filter((obj) => obj.tech === "javascript");
+    case "cpp":
+      return questions.filter((obj) => obj.tech === "cpp");
+    case "python":
+      return questions.filter((obj) => obj.tech === "python");
+    default:
+      return questions;
+  }
 }
 
 function reducer(state, action) {
@@ -101,11 +125,25 @@ function reducer(state, action) {
     case "filter":
       return {
         ...state,
-        questions: difficultyFilterQues(state.fetchedQuestions, action.payload),
+        questions: difficultyFilterQues(
+          state.fetchedQuestions,
+          action.payload,
+          state.techSelected,
+        ),
         status: "ready",
         // secondsRemaining:
         //   difficultyFilterQues(state.fetchedQuestions, action.payload).length *
         //   SEC_PER_QUESTION,
+      };
+    case "selectQuiz":
+      return {
+        ...state,
+        showFilter: action.payload === "all" ? false : true,
+        questions: filterQuestionTechStack(
+          state.fetchedQuestions,
+          action.payload,
+        ),
+        techSelected: action.payload,
       };
     case "review":
       return {
@@ -140,6 +178,8 @@ function App() {
       secondsRemaining,
       reviewing,
       answerArr,
+      showFilter,
+      techSelected,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -172,8 +212,13 @@ function App() {
         {status === "error" && <Error />}
         {status === "ready" && (
           <>
-            <Filter dispatch={dispatch} />
-            <StartScreen questionNum={questionNum} dispatch={dispatch} />
+            <SelectQuiz dispatch={dispatch} />
+            {showFilter ? <Filter dispatch={dispatch} /> : ""}
+            <StartScreen
+              questionNum={questionNum}
+              dispatch={dispatch}
+              techSelected={techSelected}
+            />
           </>
         )}
         {status === "start" && (

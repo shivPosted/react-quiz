@@ -4,25 +4,29 @@
       "question": "Which is the most popular JavaScript framework?",
       "options": ["Angular", "React", "Svelte", "Vue"],
       "correctOption": 1,
-      "points": 10
+      "points": 10,
+      "tech": "react"
     },
     {
       "question": "Which company invented React?",
       "options": ["Google", "Apple", "Netflix", "Facebook"],
       "correctOption": 3,
-      "points": 10
+      "points": 10,
+      "tech": "react"
     },
     {
       "question": "What's the fundamental building block of React apps?",
       "options": ["Components", "Blocks", "Elements", "Effects"],
       "correctOption": 0,
-      "points": 10
+      "points": 10,
+      "tech": "react"
     },
     {
       "question": "What's the name of the syntax we use to describe the UI in React components?",
       "options": ["FBJ", "Babel", "JSX", "ES2015"],
       "correctOption": 2,
-      "points": 10
+      "points": 10,
+      "tech": "react"
     },
     {
       "question": "How does data flow naturally in React apps?",
@@ -33,13 +37,15 @@
         "The developers decides"
       ],
       "correctOption": 0,
-      "points": 10
+      "points": 10,
+      "tech": "react"
     },
     {
       "question": "How to pass data into a child component?",
       "options": ["State", "Props", "PropTypes", "Parameters"],
       "correctOption": 1,
-      "points": 10
+      "points": 10,
+      "tech": "react"
     },
     {
       "question": "When to use derived state?",
@@ -50,7 +56,8 @@
         "Whenever the state can be computed from another state variable"
       ],
       "correctOption": 3,
-      "points": 30
+      "points": 30,
+      "tech": "react"
     },
     {
       "question": "What triggers a UI re-render in React?",
@@ -61,7 +68,8 @@
         "Adding event listeners to DOM elements"
       ],
       "correctOption": 2,
-      "points": 20
+      "points": 20,
+      "tech": "react"
     },
     {
       "question": "When do we directly \"touch\" the DOM in React?",
@@ -72,7 +80,8 @@
         "Almost never"
       ],
       "correctOption": 3,
-      "points": 20
+      "points": 20,
+      "tech": "react"
     },
     {
       "question": "In what situation do we use a callback to update state?",
@@ -83,7 +92,8 @@
         "When the new state depends on the previous state"
       ],
       "correctOption": 3,
-      "points": 30
+      "points": 30,
+      "tech": "react"
     },
     {
       "question": "If we pass a function to useState, when will that function be called?",
@@ -94,13 +104,15 @@
         "The first time we update the state"
       ],
       "correctOption": 2,
-      "points": 30
+      "points": 30,
+      "tech": "react"
     },
     {
       "question": "Which hook to use for an API request on the component's initial render?",
       "options": ["useState", "useEffect", "useRef", "useReducer"],
       "correctOption": 1,
-      "points": 10
+      "points": 10,
+      "tech": "react"
     },
     {
       "question": "Which variables should go into the useEffect dependency array?",
@@ -111,7 +123,8 @@
         "All variables needed for clean up"
       ],
       "correctOption": 2,
-      "points": 30
+      "points": 30,
+      "tech": "react"
     },
     {
       "question": "An effect will always run on the initial render.",
@@ -122,7 +135,8 @@
         "In depends on the code in the effect"
       ],
       "correctOption": 0,
-      "points": 30
+      "points": 30,
+      "tech": "react"
     },
     {
       "question": "When will an effect run if it doesn't have a dependency array?",
@@ -133,7 +147,484 @@
         "Each time the component is re-rendered"
       ],
       "correctOption": 3,
-      "points": 20
+      "points": 20,
+      "tech": "react"
+    },
+    {
+      "question": "What is the type of `null` in JavaScript?",
+      "options": ["null", "object", "undefined", "number"],
+      "correctOption": 1,
+      "points": 10,
+      "tech": "javascript"
+    },
+    {
+      "question": "Which keyword is used to declare a constant in JavaScript?",
+      "options": ["let", "var", "const", "final"],
+      "correctOption": 2,
+      "points": 10,
+      "tech": "javascript"
+    },
+    {
+      "question": "How can you convert a string to an integer in JavaScript?",
+      "options": ["parseInt()", "Number()", "toString()", "parseFloat()"],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "javascript"
+    },
+    {
+      "question": "Which method can be used to join two arrays in JavaScript?",
+      "options": ["concat()", "join()", "push()", "map()"],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "javascript"
+    },
+    {
+      "question": "What does the `map()` method return?",
+      "options": [
+        "The original array",
+        "A new array with transformed elements",
+        "The first element that matches a condition",
+        "The sum of all elements"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "tech": "javascript"
+    },
+    {
+      "question": "What is a 'closure' in JavaScript?",
+      "options": [
+        "A function that is self-executing",
+        "A function having access to its own scope, parent scope, and global scope",
+        "A function with no return value",
+        "A variable that holds a function"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "tech": "javascript"
+    },
+    {
+      "question": "Which of the following is true about 'let' and 'var'?",
+      "options": [
+        "'let' is block-scoped, 'var' is function-scoped",
+        "'let' is function-scoped, 'var' is block-scoped",
+        "Both are block-scoped",
+        "Both are function-scoped"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "tech": "javascript"
+    },
+    {
+      "question": "What will the following code log: `console.log(1 + '2' + 3)`?",
+      "options": ["6", "'123'", "'15'", "'12'"],
+      "correctOption": 1,
+      "points": 10,
+      "tech": "javascript"
+    },
+    {
+      "question": "Which JavaScript function is used to schedule a task to run after a delay?",
+      "options": [
+        "setTimeout()",
+        "setInterval()",
+        "requestAnimationFrame()",
+        "clearTimeout()"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "javascript"
+    },
+    {
+      "question": "Which statement correctly explains the 'this' keyword in JavaScript?",
+      "options": [
+        "'this' refers to the current function",
+        "'this' refers to the global object in non-strict mode",
+        "'this' refers to the previous object in the scope chain",
+        "'this' refers to the return value of the function"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "tech": "javascript"
+    },
+    {
+      "question": "What is the purpose of the 'use strict' directive?",
+      "options": [
+        "Enforces strict syntax rules in JavaScript",
+        "Enables strict mode for variable typing",
+        "Disables the use of 'this'",
+        "Allows better optimization by the JavaScript engine"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "javascript"
+    },
+    {
+      "question": "What is an Immediately Invoked Function Expression (IIFE) in JavaScript?",
+      "options": [
+        "A function that is immediately called after its definition",
+        "A function that is invoked on an event",
+        "A function that cannot return a value",
+        "A function that is always recursive"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "tech": "javascript"
+    },
+    {
+      "question": "What will the following code log: `console.log(typeof NaN)`?",
+      "options": ["'NaN'", "'undefined'", "'number'", "'null'"],
+      "correctOption": 2,
+      "points": 20,
+      "tech": "javascript"
+    },
+    {
+      "question": "How can you deep clone an object in JavaScript?",
+      "options": [
+        "Object.assign()",
+        "Using JSON.stringify() and JSON.parse()",
+        "Array.prototype.slice()",
+        "None of the above"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "tech": "javascript"
+    },
+    {
+      "question": "What does `Promise.resolve()` do?",
+      "options": [
+        "Creates a rejected promise",
+        "Creates a resolved promise",
+        "Returns the result of a promise",
+        "Waits for all promises to resolve"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "tech": "javascript"
+    },
+    {
+      "question": "What is the output of `console.log([...'hello'])`?",
+      "options": [
+        "['h', 'e', 'l', 'l', 'o']",
+        "['hello']",
+        "[undefined]",
+        "['h', 'e', 'l']"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "tech": "javascript"
+    },
+    {
+      "question": "Which of the following is the correct file extension for C++ source files?",
+      "options": [".cpp", ".cp", ".cxx", ".ccp"],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which of the following is used to create objects in C++?",
+      "options": ["new", "malloc", "alloc", "create"],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "cpp"
+    },
+    {
+      "question": "What does the term 'STL' stand for in C++?",
+      "options": [
+        "Standard Template Library",
+        "Static Type Library",
+        "System Template Library",
+        "Standard Tools Library"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which of the following is not a valid C++ data type?",
+      "options": ["float", "int", "boolean", "char"],
+      "correctOption": 2,
+      "points": 10,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which access specifier is used to hide data in C++ classes?",
+      "options": ["private", "public", "protected", "internal"],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "cpp"
+    },
+    {
+      "question": "What is the purpose of a constructor in C++?",
+      "options": [
+        "To initialize an object when it is created",
+        "To destroy an object when it goes out of scope",
+        "To overload a function",
+        "To manage memory allocation"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which keyword is used to define an abstract class in C++?",
+      "options": ["virtual", "abstract", "interface", "none of the above"],
+      "correctOption": 3,
+      "points": 20,
+      "tech": "cpp"
+    },
+    {
+      "question": "What happens when you delete a pointer twice in C++?",
+      "options": [
+        "It results in a segmentation fault",
+        "It causes memory leak",
+        "It throws an exception",
+        "The program compiles and runs without issues"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "tech": "cpp"
+    },
+    {
+      "question": "What is the use of the 'virtual' keyword in C++?",
+      "options": [
+        "To declare a function that can be overridden in a derived class",
+        "To declare a function without a return type",
+        "To prevent a function from being overridden",
+        "To declare a function as inline"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which operator cannot be overloaded in C++?",
+      "options": ["++", "==", "::", "+"],
+      "correctOption": 2,
+      "points": 20,
+      "tech": "cpp"
+    },
+    {
+      "question": "What does the 'new' keyword do in C++?",
+      "options": [
+        "It allocates memory on the heap for a new object",
+        "It reallocates memory for an object",
+        "It creates a copy of an object",
+        "It initializes a new object on the stack"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which of the following is true about references in C++?",
+      "options": [
+        "A reference can be reseated to another object",
+        "A reference must be initialized when declared",
+        "References are equivalent to pointers in all aspects",
+        "References cannot be used as function parameters"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "tech": "cpp"
+    },
+    {
+      "question": "What is a 'pure virtual function' in C++?",
+      "options": [
+        "A function without a definition",
+        "A function with no return type",
+        "A function declared using the 'abstract' keyword",
+        "A function defined only in derived classes"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "tech": "cpp"
+    },
+    {
+      "question": "What is the time complexity of accessing an element in a C++ vector (on average)?",
+      "options": ["O(n)", "O(log n)", "O(1)", "O(n log n)"],
+      "correctOption": 2,
+      "points": 30,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which of the following best describes a C++ destructor?",
+      "options": [
+        "A function that cleans up memory when an object is destroyed",
+        "A function that creates a copy of an object",
+        "A function that initializes an object",
+        "A function that deletes an object from memory"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which of the following is not a standard exception in C++?",
+      "options": [
+        "std::out_of_range",
+        "std::logic_error",
+        "std::bad_alloc",
+        "std::overflow_error"
+      ],
+      "correctOption": 3,
+      "points": 30,
+      "tech": "cpp"
+    },
+    {
+      "question": "Which of the following is the correct file extension for Python source files?",
+      "options": [".py", ".pyo", ".pyc", ".pyd"],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "python"
+    },
+    {
+      "question": "Which keyword is used to create a function in Python?",
+      "options": ["function", "fun", "def", "define"],
+      "correctOption": 2,
+      "points": 10,
+      "tech": "python"
+    },
+    {
+      "question": "What does the term 'PEP' stand for in Python?",
+      "options": [
+        "Python Enhancement Proposal",
+        "Python Execution Program",
+        "Python Extended Protocol",
+        "Python Encrypted Procedure"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "python"
+    },
+    {
+      "question": "Which of the following is not a valid Python data type?",
+      "options": ["list", "set", "queue", "tuple"],
+      "correctOption": 2,
+      "points": 10,
+      "tech": "python"
+    },
+    {
+      "question": "Which access specifier is used to make a method private in Python classes?",
+      "options": ["__", "private", "protected", "public"],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "python"
+    },
+    {
+      "question": "What is the purpose of the 'self' parameter in Python class methods?",
+      "options": [
+        "To refer to the instance of the class",
+        "To destroy the class object",
+        "To manage memory allocation",
+        "To refer to the class itself"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "python"
+    },
+    {
+      "question": "Which keyword is used to create a generator in Python?",
+      "options": ["yield", "return", "generate", "async"],
+      "correctOption": 0,
+      "points": 20,
+      "tech": "python"
+    },
+    {
+      "question": "What happens when you try to modify a tuple in Python?",
+      "options": [
+        "It results in an error",
+        "The tuple is modified successfully",
+        "The program crashes",
+        "The tuple is automatically converted to a list"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "tech": "python"
+    },
+    {
+      "question": "What is the use of the 'with' keyword in Python?",
+      "options": [
+        "To handle exceptions",
+        "To simplify exception handling by encapsulating cleanup tasks",
+        "To declare a function",
+        "To define a class"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "tech": "python"
+    },
+    {
+      "question": "Which operator is used for floor division in Python?",
+      "options": ["/", "%", "//", "^"],
+      "correctOption": 2,
+      "points": 20,
+      "tech": "python"
+    },
+    {
+      "question": "What does the 'lambda' keyword do in Python?",
+      "options": [
+        "It defines an anonymous function",
+        "It returns a function object",
+        "It defines a named function",
+        "It initializes a class"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "python"
+    },
+    {
+      "question": "Which of the following is true about lists in Python?",
+      "options": [
+        "Lists are immutable",
+        "Lists can contain elements of different types",
+        "Lists cannot contain duplicate values",
+        "Lists are the same as tuples"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "tech": "python"
+    },
+    {
+      "question": "What is a 'decorator' in Python?",
+      "options": [
+        "A function that modifies another function",
+        "A keyword that defines a function",
+        "A variable that stores functions",
+        "A function that returns multiple values"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "tech": "python"
+    },
+    {
+      "question": "What is the time complexity of accessing an element in a Python list (on average)?",
+      "options": ["O(n)", "O(log n)", "O(1)", "O(n log n)"],
+      "correctOption": 2,
+      "points": 30,
+      "tech": "python"
+    },
+    {
+      "question": "Which of the following best describes a Python class?",
+      "options": [
+        "A blueprint for creating objects",
+        "A function that cleans up memory",
+        "A module that contains variables",
+        "A function that creates objects"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "tech": "python"
+    },
+    {
+      "question": "Which of the following is not a standard exception in Python?",
+      "options": [
+        "IndexError",
+        "ValueError",
+        "BufferError",
+        "OverflowException"
+      ],
+      "correctOption": 3,
+      "points": 30,
+      "tech": "python"
     }
   ]
 }
