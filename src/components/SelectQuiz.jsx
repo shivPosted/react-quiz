@@ -1,4 +1,8 @@
-export default function SelectQuiz({ dispatch }) {
+import { useQuizContext } from "./QuizContext";
+
+export default function SelectQuiz() {
+  const { dispatch } = useQuizContext();
+
   return (
     <select
       name="select-quiz"

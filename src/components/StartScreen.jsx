@@ -1,4 +1,7 @@
-export default function StartScreen({ questionNum, dispatch, techSelected }) {
+import { useQuizContext } from "./QuizContext";
+
+export default function StartScreen() {
+  const { questionNum, dispatch, techSelected } = useQuizContext();
   return (
     <div className="start">
       <h2>Welcome to the Tech Quiz</h2>

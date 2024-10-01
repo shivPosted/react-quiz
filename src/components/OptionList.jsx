@@ -1,6 +1,9 @@
 import Option from "./Option";
+import { useQuizContext } from "./QuizContext";
 
-export default function OptionList({ options, correctOpt, dispatch, answer }) {
+export default function OptionList({ options, correctOpt }) {
+  const { answer } = useQuizContext();
+
   return (
     <div className="options">
       {options?.map((option, i) => (
@@ -8,7 +11,6 @@ export default function OptionList({ options, correctOpt, dispatch, answer }) {
           key={option}
           correctOpt={correctOpt}
           optionNum={i}
-          dispatch={dispatch}
           answer={answer}
         >
           {option}{" "}

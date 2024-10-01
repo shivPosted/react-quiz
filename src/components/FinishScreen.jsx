@@ -1,9 +1,7 @@
-export default function FinishScreen({
-  points,
-  totalPoints,
-  dispatch,
-  highscore,
-}) {
+import { useQuizContext } from "./QuizContext";
+
+export default function FinishScreen() {
+  const { points, totalPoints, dispatch, highscore } = useQuizContext();
   const percentage = Math.trunc((points / totalPoints) * 100);
 
   let emoji = "🥇";

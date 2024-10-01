@@ -1,15 +1,12 @@
 import OptionList from "./OptionList";
+import { useQuizContext } from "./QuizContext";
 import ReviewList from "./ReviewList";
 
-export default function QuestionBox({
-  questionObj,
-  children,
-  answer,
-  dispatch,
-  reviewing,
-  quesIndex,
-  answerArr,
-}) {
+export default function QuestionBox() {
+  const { index, questions, dispatch, reviewing, answerArr } = useQuizContext();
+
+  const questionObj = questions[index];
+
   console.log(questionObj);
   if (reviewing)
     return (
@@ -18,9 +15,8 @@ export default function QuestionBox({
         <ReviewList
           correctOpt={questionObj.correctOption}
           options={questionObj?.options}
-          answerUser={answerArr[quesIndex]}
+          answerUser={answerArr[index]}
         />
-        {children}
         <button
           className="btn btn-ui"
           onClick={() => dispatch({ type: "nextReview" })}
@@ -35,10 +31,7 @@ export default function QuestionBox({
       <OptionList
         correctOpt={questionObj.correctOption}
         options={questionObj?.options}
-        dispatch={dispatch}
-        answer={answer}
       />
-      {children}
     </div>
   );
 }

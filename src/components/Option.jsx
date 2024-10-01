@@ -1,10 +1,7 @@
-export default function Option({
-  children,
-  optionNum,
-  dispatch,
-  answer,
-  correctOpt,
-}) {
+import { useQuizContext } from "./QuizContext";
+
+export default function Option({ children, optionNum, answer, correctOpt }) {
+  const { dispatch } = useQuizContext();
   return (
     <button
       className={`btn btn-option ${answer !== null ? (optionNum === correctOpt ? "correct" : "wrong") : ""} ${optionNum === answer ? "answer" : ""}`}

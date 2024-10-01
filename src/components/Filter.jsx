@@ -1,4 +1,7 @@
-export default function Filter({ dispatch }) {
+import { useQuizContext } from "./QuizContext";
+
+export default function Filter() {
+  const { dispatch } = useQuizContext();
   return (
     <select
       name="filter"
