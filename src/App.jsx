@@ -32,7 +32,6 @@ const initialState = {
 };
 
 function difficultyFilterQues(questions, difficulty, techSelected) {
-  console.log(questions, difficulty);
   if (difficulty === "easy") {
     return questions.filter(
       (obj) => obj.points === 10 && obj.tech === techSelected,
@@ -185,8 +184,6 @@ function App() {
   ] = useReducer(reducer, initialState);
 
   const questionNum = questions.length;
-  console.log(questionNum);
-  console.log(questions);
 
   const totalPoints = questions.reduce((accum, obj) => accum + obj.points, 0);
 
@@ -200,10 +197,8 @@ function App() {
 
         const { questions: data } = await res.json();
 
-        console.log(data);
         dispatch({ type: "dataRecieved", payload: data });
       } catch (err) {
-        console.log(err.message);
         dispatch({ type: "error" });
       }
     }

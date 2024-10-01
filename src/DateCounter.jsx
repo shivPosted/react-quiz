@@ -3,7 +3,6 @@ import styles from "./DateCounter.module.css";
 
 const dateFormatter = function (count) {
   const date = new Date(Date.now());
-  console.log(date);
 
   date.setDate(date.getDate() + count);
 
@@ -36,7 +35,6 @@ function reducer(state, action) {
 }
 export default function DateCounter() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state);
   const { count, step } = state;
 
   function handleReset() {
